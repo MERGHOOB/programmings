@@ -1,6 +1,8 @@
 package string.slidingWindow;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Set;
  */
 public class LC3_longest_substring_without_repeating_characters {
 
-
+    //10ms
     private int lengthOfLongestSubstring(String string) {
 
         if (string == null || string.isEmpty()) {
@@ -40,6 +42,34 @@ public class LC3_longest_substring_without_repeating_characters {
         return maxLength;
     }
 
+
+    // fastest 8ms
+    private int lengthOfLongestSubstring2(String string) {
+
+        if (string == null || string.isEmpty()) {
+            return 0;
+        }
+
+        int firstPointer = 0;
+        int secondPointer = 0;
+        int maxLength = 0;
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        while (secondPointer < string.length()) {
+
+            if (map.containsKey(string.charAt(secondPointer))) {
+                firstPointer = Math.max(firstPointer, map.get(string.charAt(secondPointer)));
+            }
+            map.put(string.charAt(secondPointer), secondPointer + 1);
+
+            maxLength = Math.max(maxLength, secondPointer - firstPointer + 1);
+            secondPointer++;
+
+        }
+
+        return maxLength;
+    }
     public static void main(String[] args) {
 
         LC3_longest_substring_without_repeating_characters longestSubstring = new LC3_longest_substring_without_repeating_characters();
