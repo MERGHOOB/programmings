@@ -22,7 +22,7 @@ public class LC8_StringToInteger {
 
     //Simple solution
 
-    public int myAtoi(String str) {
+    public int myAtoi1(String str) {
 
         int i = 0;
         StringBuilder result = new StringBuilder();
@@ -93,10 +93,51 @@ public class LC8_StringToInteger {
 
     }
 
+    // 1 ms
+    public int myAtoi(String str) {
+
+        int total = 0;
+        int sign = 1;
+
+        int index = 0;
+
+        while(index < str.length() && str.charAt(index) == ' ') {
+            index ++;
+        }
+
+        if(index >=str.length()) {
+            return 0;
+        }
+        //handle sign
+
+        if(str.charAt(index) == '+' || str.charAt(index) == '-') {
+            sign = str.charAt(index) == '+' ? 1: -1;
+            index++;
+        }
+
+        while(index < str.length()) {
+
+            int digit = str.charAt(index) - '0';
+            if(digit < 0 || digit > 9) {
+                break;
+            }
+
+            //Handling overflow
+            if(total > Integer.MAX_VALUE/10 || total == Integer.MAX_VALUE/10 && Integer.MAX_VALUE %10 < digit) {
+                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            }
+
+            total = total*10 + digit;
+            index++;
+        }
+        return total * sign;
+    }
+
+
 
     public static void main(String[] args) {
 
-        System.out.println(new LC8_StringToInteger().myAtoi("143-"));
+        System.out.println(new LC8_StringToInteger().myAtoi("2147483648"));
 
     }
 
