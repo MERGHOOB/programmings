@@ -8,6 +8,41 @@ package string.slidingWindow;
 public class LC5_LongestPallindromicSubstring {
 
 
+
+
+    //DP
+
+    private String longestPallindromWithDP(String text) {
+
+        boolean[][] isPall = new boolean[text.length()][text.length()];
+
+        String result = ""; // Consider empty
+
+        for(int first = text.length()-1; first>=0; first--) {
+
+            for(int second = first; second<text.length(); second++) {
+
+                isPall[first][second] = text.charAt(first) == text.charAt(second) &&
+                        ((second - first < 3) || isPall[first + 1][second - 1]);
+
+                if(isPall[first][second] && second-first+1 > result.length()) {
+                    result = getSubString(text, first,second);
+                }
+            }
+        }
+        return result;
+    }
+
+
+    //Main method to test
+    public static void main(String[] args) {
+
+        String s = "babad";
+        String palindrome = new LC5_LongestPallindromicSubstring().longestPallindromWithDP(s);
+
+        System.out.println(palindrome);
+    }
+
     //BruteForce
     private String longestPalindrome(String text) {
 
@@ -40,17 +75,6 @@ public class LC5_LongestPallindromicSubstring {
 
         return pallindrome;
     }
-
-
-//Main method to test
-    public static void main(String[] args) {
-
-        String s = "";
-        String palindrome = new LC5_LongestPallindromicSubstring().longestPalindrome(s);
-
-        System.out.println(palindrome);
-    }
-
 
 //Helper Function used in BruteForce
     private String getSubString(String text, int first, int second) {
