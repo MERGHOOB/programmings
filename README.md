@@ -1,10 +1,11 @@
 # programmings
 
-This repository does have all coding about my 
-
-This repo does contain solution for problem mentioned in Leetcode
+This reository is actually for problem solving useful for interview questions
 
 
-FileName format: LC<ProblemNo.><ProblemHeading>
+For leetcode soltuions filename format is as follows
+LC<ProblemNo.><ProblemHeading>
+
+
 
 
