@@ -1,5 +1,3 @@
-import com.sun.xml.internal.fastinfoset.util.CharArray;
-
 /**
  * Implement strStr().
  * <p>
