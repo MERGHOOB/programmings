@@ -1,3 +1,5 @@
+package string;
+
 /**
  * Implement strStr().
  * <p>
