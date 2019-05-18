@@ -21,6 +21,7 @@ reverse sorted array nlogn
 public class HeapSort {
 
 
+    @SuppressWarnings("WeakerAccess")
     public void sort(int []arr) {
         if(arr == null)
         {
@@ -78,7 +79,7 @@ public class HeapSort {
    }
 
 
-    public void swap(int [] arr, int first, int second) {
+    private void swap(int [] arr, int first, int second) {
         int temp = arr[first];
         arr[first] = arr[second];
         arr[second] = temp;
@@ -86,11 +87,11 @@ public class HeapSort {
 
     public static void main(String[] args) {
         HeapSort hs = new HeapSort();
-        int arr[] = {
+        int[] arr = {
 //                -1,5,8,2,-6,-8,11,5
 //                2,3,5,6,7
 //                7,6,5,4,3
-                0,56,32,35,64,23,5,69,2,72,12,40
+                0, 56, 32, 35, 64, 23, 5, 69, 2, 72, 12, 40
 //                1,2
 //                2,0
 //                1
