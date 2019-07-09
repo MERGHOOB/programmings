@@ -1,7 +1,7 @@
-package vendingMachine.VandingMachine.payment;
+package vendingMachine.payment;
 
-import vendingMachine.VandingMachine.enums.PaymentMode;
-import vendingMachine.VandingMachine.ifaces.IPaymentService;
+import vendingMachine.enums.PaymentMode;
+import vendingMachine.ifaces.IPaymentService;
 
 public class PaymentService {
 

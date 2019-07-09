@@ -1,4 +1,4 @@
-package vendingMachine.VandingMachine.enums;
+package vendingMachine.enums;
 
 public enum ItemType {
     A(1),

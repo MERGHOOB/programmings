@@ -1,7 +1,7 @@
-package vendingMachine.VandingMachine.constants;
+package vendingMachine.constants;
 
 
-import vendingMachine.VandingMachine.enums.ItemType;
+import vendingMachine.enums.ItemType;
 
 public class Item {
 

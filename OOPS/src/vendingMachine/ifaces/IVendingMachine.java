@@ -1,8 +1,8 @@
-package vendingMachine.VandingMachine.ifaces;
+package vendingMachine.ifaces;
 
-import vendingMachine.VandingMachine.constants.Item;
-import vendingMachine.VandingMachine.enums.ItemType;
-import vendingMachine.VandingMachine.enums.PaymentMode;
+import vendingMachine.constants.Item;
+import vendingMachine.enums.ItemType;
+import vendingMachine.enums.PaymentMode;
 
 public interface IVendingMachine {
 

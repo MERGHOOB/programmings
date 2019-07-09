@@ -1,32 +1,17 @@
-package vendingMachine.VandingMachine;
+package vendingMachine.vendingMachines;
 
-import vendingMachine.VandingMachine.constants.Item;
-import vendingMachine.VandingMachine.enums.ItemType;
-import vendingMachine.VandingMachine.ifaces.IVendingMachine;
-import vendingMachine.VandingMachine.enums.PaymentMode;
-import vendingMachine.VandingMachine.payment.PaymentService;
+import vendingMachine.constants.Item;
+import vendingMachine.enums.ItemType;
+import vendingMachine.ifaces.IVendingMachine;
+import vendingMachine.enums.PaymentMode;
+import vendingMachine.payment.PaymentService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VendingMachine implements IVendingMachine {
-
-
-    /*
-        capacity for vendingMachine to hold each item.
-        Considering that capacity is same for each item
-     */
-
-
-    private final int capacity;
-
-    public VendingMachine(int capacity) {
-        this.capacity = capacity;
-
-    }
-
+public abstract class VendingMachine implements IVendingMachine {
 
 
     private Map<ItemType, List<Item>> items = new HashMap<>();
@@ -66,7 +51,5 @@ public class VendingMachine implements IVendingMachine {
         }
     }
 
-    private int getCapacityForItem(ItemType a) {
-        return capacity;
-    }
+    abstract int getCapacityForItem(ItemType a);
 }

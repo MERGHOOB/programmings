@@ -1,4 +1,4 @@
-package vendingMachine.VandingMachine.ifaces;
+package vendingMachine.ifaces;
 
 public interface IPaymentService {
 

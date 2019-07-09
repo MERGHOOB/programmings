@@ -1,9 +1,9 @@
 package VandingMachine;
 
-import vendingMachine.VandingMachine.VendingMachine;
-import vendingMachine.VandingMachine.constants.Item;
-import vendingMachine.VandingMachine.enums.ItemType;
-import vendingMachine.VandingMachine.enums.PaymentMode;
+import vendingMachine.constants.Item;
+import vendingMachine.enums.ItemType;
+import vendingMachine.enums.PaymentMode;
+import vendingMachine.vendingMachines.VMFixedCapacityForEachItem;
 
 public class VMClient {
 
@@ -11,7 +11,7 @@ public class VMClient {
     public static void main(String[] args) {
 
 
-        VendingMachine vendingMachine = new VendingMachine(10);
+        VMFixedCapacityForEachItem vendingMachine = new VMFixedCapacityForEachItem(10);
 
         // adding items until capacity
      vendingMachine.refill();

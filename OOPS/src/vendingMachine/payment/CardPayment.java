@@ -1,6 +1,6 @@
-package vendingMachine.VandingMachine.payment;
+package vendingMachine.payment;
 
-import vendingMachine.VandingMachine.ifaces.IPaymentService;
+import vendingMachine.ifaces.IPaymentService;
 
 public class CardPayment implements IPaymentService {
     @Override
