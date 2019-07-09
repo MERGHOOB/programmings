@@ -14,9 +14,7 @@ public class VendingMachineClient {
         VendingMachine vendingMachine = new VendingMachine();
 
         // adding items until capacity
-        while(vendingMachine.addItem(ItemType.A));
-        while(vendingMachine.addItem(ItemType.B));
-        while(vendingMachine.addItem(ItemType.C));
+     vendingMachine.refill();
 
         ItemType itemType = ItemType.A;
         PaymentMode paymentMode = PaymentMode.CASH;
