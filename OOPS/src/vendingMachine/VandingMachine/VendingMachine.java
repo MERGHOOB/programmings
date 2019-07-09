@@ -15,12 +15,19 @@ public class VendingMachine implements IVendingMachine {
 
 
     /*
-    consider vending machine supports 5 item of type: a, b, c, d, e
-    capacity for each; 10,10,10,10,10
-
-
-
+        capacity for vendingMachine to hold each item.
+        Considering that capacity is same for each item
      */
+
+
+    private final int capacity;
+
+    public VendingMachine(int capacity) {
+        this.capacity = capacity;
+
+    }
+
+
 
     private Map<ItemType, List<Item>> items = new HashMap<>();
 
@@ -34,7 +41,7 @@ public class VendingMachine implements IVendingMachine {
 
 
     public Item dispense(ItemType itemType) {
-        return items.get(itemType).remove(0);
+        return items.get(itemType).remove(items.get(itemType).size()-1);
     }
 
 
@@ -60,6 +67,6 @@ public class VendingMachine implements IVendingMachine {
     }
 
     private int getCapacityForItem(ItemType a) {
-        return 10;
+        return capacity;
     }
 }

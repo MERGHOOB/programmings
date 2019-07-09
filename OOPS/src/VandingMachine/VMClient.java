@@ -5,13 +5,13 @@ import vendingMachine.VandingMachine.constants.Item;
 import vendingMachine.VandingMachine.enums.ItemType;
 import vendingMachine.VandingMachine.enums.PaymentMode;
 
-public class VendingMachineClient {
+public class VMClient {
 
 
     public static void main(String[] args) {
 
 
-        VendingMachine vendingMachine = new VendingMachine();
+        VendingMachine vendingMachine = new VendingMachine(10);
 
         // adding items until capacity
      vendingMachine.refill();
