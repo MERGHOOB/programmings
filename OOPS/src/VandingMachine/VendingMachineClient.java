@@ -27,7 +27,7 @@ public class VendingMachineClient {
             boolean isPaid = vendingMachine.pay(itemType.getPrice(), paymentMode);
             if(isPaid)
             {
-                Item item = vendingMachine.dispanse(itemType);
+                Item item = vendingMachine.dispense(itemType);
                 System.out.println(item.getItemType().name());
             }
         }

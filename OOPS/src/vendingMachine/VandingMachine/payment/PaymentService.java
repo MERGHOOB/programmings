@@ -1,5 +1,7 @@
 package vendingMachine.VandingMachine.payment;
 
+import vendingMachine.VandingMachine.ifaces.IPaymentService;
+
 public class PaymentService {
 
     IPaymentService paymentService;

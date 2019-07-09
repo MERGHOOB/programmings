@@ -2,6 +2,7 @@ package vendingMachine.VandingMachine;
 
 import vendingMachine.VandingMachine.constants.Item;
 import vendingMachine.VandingMachine.constants.ItemType;
+import vendingMachine.VandingMachine.ifaces.IVendingMachine;
 import vendingMachine.VandingMachine.payment.PaymentMode;
 import vendingMachine.VandingMachine.payment.PaymentService;
 
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VendingMachine {
+public class VendingMachine implements IVendingMachine {
 
 
     /*
@@ -32,7 +33,7 @@ public class VendingMachine {
     }
 
 
-    public Item dispanse(ItemType itemType) {
+    public Item dispense(ItemType itemType) {
         return items.get(itemType).remove(0);
     }
 
@@ -46,6 +47,16 @@ public class VendingMachine {
         }
 
         return false;
+    }
+
+    @Override
+    public void refill() {
+
+        ItemType[] values = ItemType.values();
+
+        for(ItemType itemType : values) {
+            while( addItem(itemType));
+        }
     }
 
     private int getCapacityForItem(ItemType a) {
