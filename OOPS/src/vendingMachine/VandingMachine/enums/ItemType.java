@@ -1,4 +1,4 @@
-package vendingMachine.VandingMachine.constants;
+package vendingMachine.VandingMachine.enums;
 
 public enum ItemType {
     A(1),

@@ -1,9 +1,9 @@
 package vendingMachine.VandingMachine;
 
 import vendingMachine.VandingMachine.constants.Item;
-import vendingMachine.VandingMachine.constants.ItemType;
+import vendingMachine.VandingMachine.enums.ItemType;
 import vendingMachine.VandingMachine.ifaces.IVendingMachine;
-import vendingMachine.VandingMachine.payment.PaymentMode;
+import vendingMachine.VandingMachine.enums.PaymentMode;
 import vendingMachine.VandingMachine.payment.PaymentService;
 
 import java.util.ArrayList;

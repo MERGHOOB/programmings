@@ -2,8 +2,8 @@ package VandingMachine;
 
 import vendingMachine.VandingMachine.VendingMachine;
 import vendingMachine.VandingMachine.constants.Item;
-import vendingMachine.VandingMachine.constants.ItemType;
-import vendingMachine.VandingMachine.payment.PaymentMode;
+import vendingMachine.VandingMachine.enums.ItemType;
+import vendingMachine.VandingMachine.enums.PaymentMode;
 
 public class VendingMachineClient {
 

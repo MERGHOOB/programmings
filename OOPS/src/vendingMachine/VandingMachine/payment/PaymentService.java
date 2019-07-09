@@ -1,5 +1,6 @@
 package vendingMachine.VandingMachine.payment;
 
+import vendingMachine.VandingMachine.enums.PaymentMode;
 import vendingMachine.VandingMachine.ifaces.IPaymentService;
 
 public class PaymentService {

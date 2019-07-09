@@ -1,11 +1,8 @@
 package vendingMachine.VandingMachine.ifaces;
 
 import vendingMachine.VandingMachine.constants.Item;
-import vendingMachine.VandingMachine.constants.ItemType;
-import vendingMachine.VandingMachine.payment.PaymentMode;
-import vendingMachine.VandingMachine.payment.PaymentService;
-
-import java.util.ArrayList;
+import vendingMachine.VandingMachine.enums.ItemType;
+import vendingMachine.VandingMachine.enums.PaymentMode;
 
 public interface IVendingMachine {
 
