@@ -2,6 +2,8 @@ package vendingMachine.vendingMachines;
 
 import vendingMachine.constants.Item;
 import vendingMachine.enums.ItemType;
+import vendingMachine.exceptions.InvalidSlotSelectionException;
+import vendingMachine.ifaces.ISlot;
 import vendingMachine.ifaces.IVendingMachine;
 import vendingMachine.enums.PaymentMode;
 import vendingMachine.payment.PaymentService;
@@ -49,6 +51,16 @@ public abstract class VendingMachine implements IVendingMachine {
         for(ItemType itemType : values) {
             while( addItem(itemType));
         }
+    }
+
+    public int selectSlot(ISlot slot) throws InvalidSlotSelectionException {
+        if(slot.isEmpty()) {
+            throw new InvalidSlotSelectionException("InvalidSlotSelectionException");
+        }
+
+        slot.setSelected(true);
+
+        return slot.getItem().getItemType().getPrice();
     }
 
     abstract int getCapacityForItem(ItemType a);
