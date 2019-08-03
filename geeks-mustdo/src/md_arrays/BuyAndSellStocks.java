@@ -38,8 +38,6 @@ public class BuyAndSellStocks {
     private static StringBuffer getResult(int[] numbers, int size) {
 
         StringBuffer stringBuffer = new StringBuffer();
-        int max = Integer.MIN_VALUE;
-        int min = numbers[0];
         int lastMinIndex = 0;
         int lastMaxIndex = 0;
         for (int i = 1; i < size; i++) {
