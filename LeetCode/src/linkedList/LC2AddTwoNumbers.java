@@ -102,11 +102,11 @@ new LC2AddTwoNumbers().print(listNode);
       ListNode(int x) { val = x; }
 
 
-     public void print() {
-         do {
-             System.out.print(val + "->");
-
-         }while (this.next != null);
+     public void print(ListNode listNode) {
+        while(listNode != null) {
+            System.out.println(listNode.val + " -> ");
+            listNode = listNode.next;
+        }
          System.out.println();
       }
  }
