@@ -34,21 +34,28 @@ public class LC20_ValidParantheses {
         }
         Stack<Character> stack = new Stack<>();
 
+        int head = -1;
         char[] chars = input.toCharArray();
         for (Character value: chars) {
-            if(value == openBraacket || value == curlyOpen || value == rectangleOpen) {
-                stack.push(value);
-            }
-            else
-            {
-                if(stack.isEmpty() || stack.peek() != isOpposite(value)) {
-                    return false;
-                }
-                    stack.pop();
 
+            switch (value) {
+                case '(':
+                    chars[++head] = closeBraacket;
+                    break;
+                case '{':
+                    chars[++head] = curlyClose;
+                    break;
+                case '[':
+                    chars[++head] = rectangleClose;
+                    break;
+                default:
+                    if (head == -1 || chars[head] != value)
+                        return false;
+                    else
+                        head--;
             }
         }
-        return stack.isEmpty();
+        return head == -1;
     }
 
     private static Character isOpposite(Character value) {
@@ -67,7 +74,7 @@ public class LC20_ValidParantheses {
 
     public static void main(String[] args) {
 
-        String input = "{{";
+        String input = "";
         System.out.println(isValid(input));
 
     }
