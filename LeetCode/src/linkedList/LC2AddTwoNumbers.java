@@ -109,4 +109,8 @@ new LC2AddTwoNumbers().print(listNode);
         }
          System.out.println();
       }
+
+     public void print() {
+         print(this);
+     }
  }
