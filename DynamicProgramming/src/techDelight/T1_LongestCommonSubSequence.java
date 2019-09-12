@@ -1,5 +1,7 @@
 package techDelight;
 
+import java.util.*;
+
 public class T1_LongestCommonSubSequence {
 
     public int getLCSLength(String first, String second) {
@@ -46,13 +48,49 @@ public class T1_LongestCommonSubSequence {
         return matrix[m][n];
     }
 
+    public List<String> findAllLCS(String first, String second) {
+        int matrix[][] = new int[first.length()+1][second.length()+1];
+        getLCSLength(first.toCharArray(), first.length(), second.toCharArray(), second.length(),matrix);
 
+     return  getAllLCS(first.toCharArray(), first.length(), second.toCharArray(), second.length(), matrix);
+
+    }
+
+    private List<String> getAllLCS(char[] first, int m, char[] second, int n, int[][] matrix) {
+
+        if( m == 0 || n == 0) {
+            return new ArrayList<>(Collections.nCopies(1, ""));
+        }
+
+        if(first[m-1] == second[n-1]) {
+            List<String> lcs = getAllLCS(first, m-1, second, n-1,matrix);
+            for(int i = 0; i<lcs.size(); i++) {
+                lcs.set(i, lcs.get(i)+ first[m-1]);
+            }
+            return lcs;
+        }
+
+        if(matrix[m-1][n] > matrix[m][n-1]) {
+            return getAllLCS(first, m-1, second, n, matrix);
+        }
+        if(matrix[m-1][n] < matrix[m][n-1]) {
+            return getAllLCS(first, m, second, n-1, matrix);
+        }
+
+        List<String> top = getAllLCS(first, m-1, second, n, matrix);
+        List<String> left = getAllLCS(first, m, second, n-1, matrix);
+
+        top.addAll(left);
+        return top;
+
+    }
 
 
     public static void main(String[] args) {
-        String first =  "efgh";
-        String second = "ace";
+        String first =  "ABCBDAB";
+        String second = "BDCABA";
         System.out.println(new T1_LongestCommonSubSequence().getLCSLength(first,second));
+        System.out.println(new HashSet<>(new T1_LongestCommonSubSequence().findAllLCS(first, second)));
 
 
     }
