@@ -1,16 +1,17 @@
-package com.margub.parkinglot.ifaces;
+package parkinglot.ifaces;
 
-import com.margub.parkinglot.iclasses.EntryGate;
-import com.margub.parkinglot.iclasses.ExitGate;
-import com.margub.parkinglot.ienums.ParkingType;
+import parkinglot.iclasses.EntryGate;
+import parkinglot.iclasses.ExitGate;
+import parkinglot.ienums.ParkingType;
+import parkinglot.ienums.VehicleType;
 
 import java.util.Map;
 
 public interface IParkingManagementSystem {
 
-    int getAvailableSlot(ParkingType parkingType);
+    int getAvailableSlot();
 
-    void add_parking_lot(String parkingLotName, Map<ParkingType, Integer> parkingLotMap, int entryGates, int exitGates);
+    void add_parking_lot(String parkingLotName, Map<VehicleType, Integer> parkingLotMap, int entryGates, int exitGates);
 
     boolean isAvaliable(String parkingLotName, VehicleType vehicleType);
 

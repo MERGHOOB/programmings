@@ -1,12 +1,10 @@
-package com.margub.parkinglot;
+package parkinglot;
 
-import com.margub.parkinglot.iclasses.EntryGate;
-import com.margub.parkinglot.iclasses.ExitGate;
-import com.margub.parkinglot.iclasses.parkings.ParkingLot;
-import com.margub.parkinglot.ienums.ParkingType;
-import com.margub.parkinglot.ifaces.IParkingManagementSystem;
-import com.margub.parkinglot.ifaces.VehicleType;
-import jdk.jfr.FlightRecorder;
+import parkinglot.iclasses.EntryGate;
+import parkinglot.iclasses.ExitGate;
+import parkinglot.iclasses.parkings.ParkingLot;
+import parkinglot.ienums.VehicleType;
+import parkinglot.ifaces.IParkingManagementSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,12 +17,22 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
     private Map<String, ParkingLot> NameToParkingLotMap = new HashMap<>();
 
     @Override
-    public int getAvailableSlot(ParkingType parkingType) {
+    public int getAvailableSlot() {
+        parkingLots.forEach(
+                parkingLot -> {
+                    print(parkingLot.getParkingLotMap());
+                }
+        );
+
         return 1; //TODO
     }
 
+    private void print(Map<VehicleType, Integer> parkingLotMap) {
+        System.out.println(parkingLotMap);
+    }
+
     @Override
-    public void add_parking_lot(String parkingLotName, Map<ParkingType, Integer> parkingLotMap, int entryGates, int exitGates) {
+    public void add_parking_lot(String parkingLotName, Map<VehicleType, Integer> parkingLotMap, int entryGates, int exitGates) {
         parkingLots.add(new ParkingLot(parkingLotName, parkingLotMap, entryGates, exitGates));
 
     }
