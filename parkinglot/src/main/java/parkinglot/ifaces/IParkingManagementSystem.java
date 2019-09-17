@@ -15,7 +15,7 @@ public interface IParkingManagementSystem {
 
     boolean isAvailable(String parkingLotName, VehicleType vehicleType);
 
-    boolean park_Vehicle(String parkingLotName, VehicleType vehicleType, EntryGate entryGate);
+    boolean park_Vehicle(String parkingLotName, VehicleType vehicleType, int entryGate);
 
     void print_all_available_slots(String parkingLotName);
 

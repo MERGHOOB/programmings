@@ -14,7 +14,7 @@ import java.util.Map;
 public class ParkingManagementSystem implements IParkingManagementSystem {
 
     private List<ParkingLot> parkingLots = new ArrayList<>();
-    private Map<String, ParkingLot> NameToParkingLotMap = new HashMap<>();
+    private Map<String, ParkingLot> parkingLotHashMap = new HashMap<>();
 
     @Override
     public int getAvailableSlot() {
@@ -44,19 +44,20 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
     }
 
     private ParkingLot getParkingLotByName(String parkingLotName) {
-        return NameToParkingLotMap.get(parkingLotName); //considering no failure
+        return parkingLotHashMap.get(parkingLotName); //considering no failure
     }
 
     @Override
-    public boolean park_Vehicle(String parkingLotName, VehicleType vehicleType, EntryGate entryGate) {
+    public boolean park_Vehicle(String parkingLotName, VehicleType vehicleType, int entryGate) {
 
-        map.get(parkingLotName).getEntryGates(entryGate).park;
-
-        return false;
+        return parkingLotHashMap.get(parkingLotName).getEntryGate(entryGate).park();
     }
 
     @Override
     public void print_all_available_slots(String parkingLotName) {
+
+        parkingLotHashMap.get(parkingLotName).getAvailableSlots();
+
 
     }
 

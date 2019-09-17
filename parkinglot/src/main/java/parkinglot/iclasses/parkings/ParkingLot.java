@@ -1,16 +1,18 @@
 package parkinglot.iclasses.parkings;
 
-import parkinglot.ienums.ParkingType;
+import parkinglot.iclasses.EntryGate;
+import parkinglot.iclasses.ParkingType;
 import parkinglot.ienums.VehicleType;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
 
 
     private String parkingLotName;
-    private Map<VehicleType, Integer> parkingLotMap;
-    private int entryGates;
+    private Map<ParkingType, Integer> parkingLotMap;
+    private Map<Integer, EntryGate> entryGates = new HashMap<>();
     private int exitGates;
 
 
@@ -20,19 +22,22 @@ public class ParkingLot {
     private int disabledPeopleCarSlot = 0;
     private int pregnantSlot = 0;
 
-
-    public ParkingLot(String parkingLotName, Map<VehicleType, Integer> parkingLotMap, int entryGates, int exitGates) {
+    public ParkingLot(String parkingLotName, Map<ParkingType, Integer> parkingLotMap, int numOfEntryGates, int exitGates) {
         this.parkingLotName = parkingLotName;
 
         this.parkingLotMap = parkingLotMap;
-        this.entryGates = entryGates;
+//        this.entryGates = entryGates;
+        for (int i = 1; i <= numOfEntryGates; i++) {
+
+            entryGates.put(i, new EntryGate(i));
+        }
         this.exitGates = exitGates;
     }
 
 
-/*
-To check whether given vehicle is present or not
- */
+    /*
+    To check whether given vehicle is present or not
+     */
     public boolean isAvailable(VehicleType vehicleType) {
 
         return false;
@@ -48,16 +53,20 @@ To check whether given vehicle is present or not
     }
 
 
-    public Map<VehicleType, Integer> getParkingLotMap() {
+    public Map<ParkingType, Integer> getParkingLotMap() {
         return parkingLotMap;
     }
 
-    public int getEntryGates() {
-        return entryGates;
-    }
 
     public int getExitGates() {
         return exitGates;
     }
 
+    public EntryGate getEntryGate(int entryGate) {
+        return entryGates.get(entryGate);
+    }
+
+    public void getAvailableSlots() {
+
+    }
 }
