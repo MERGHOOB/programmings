@@ -2,6 +2,7 @@ package parkinglot.iclasses.parkings;
 
 import parkinglot.iclasses.EntryGate;
 import parkinglot.iclasses.ParkingType;
+import parkinglot.ienums.RESERVATION_STATUS;
 import parkinglot.ienums.VehicleType;
 
 import java.util.HashMap;
@@ -11,27 +12,51 @@ public class ParkingLot {
 
 
     private String parkingLotName;
-    private Map<ParkingType, Integer> parkingLotMap;
+    private Map<ParkingType, Integer> parkingLotMap; // parking type with number of seats  present
     private Map<Integer, EntryGate> entryGates = new HashMap<>();
     private int exitGates;
 
 
-    private int carSlot = 0;
-    private int bikeSlot = 0;
-    private int bicycleSlot = 0;
-    private int disabledPeopleCarSlot = 0;
-    private int pregnantSlot = 0;
+    int carDefaultCount = 0;
+    int carPregnantCount = 0;
+    int carDisabledCount = 0;
+    int bikeCount = 0;
+    int bicycleCount = 0;
+
 
     public ParkingLot(String parkingLotName, Map<ParkingType, Integer> parkingLotMap, int numOfEntryGates, int exitGates) {
         this.parkingLotName = parkingLotName;
 
         this.parkingLotMap = parkingLotMap;
+        fillCounters(parkingLotMap);
 //        this.entryGates = entryGates;
+        fillEntryGates(numOfEntryGates);
+        this.exitGates = exitGates;
+    }
+
+    private void fillEntryGates(int numOfEntryGates) {
         for (int i = 1; i <= numOfEntryGates; i++) {
 
             entryGates.put(i, new EntryGate(i));
         }
-        this.exitGates = exitGates;
+    }
+
+    private void fillCounters(Map<ParkingType, Integer> parkingLotMap) {
+        for (ParkingType parkingType : parkingLotMap.keySet()) {
+            if (parkingType.getVehicleType() == VehicleType.CAR) {
+                if (parkingType.getReservation_status() == RESERVATION_STATUS.DISABLED) {
+                    carDisabledCount += parkingLotMap.get(parkingType);
+                } else if (parkingType.getReservation_status() == RESERVATION_STATUS.PREGNANT) {
+                    carPregnantCount += parkingLotMap.get(parkingType);
+                } else {
+                    carDefaultCount += parkingLotMap.get(parkingType);
+                }
+            } else if (parkingType.getVehicleType() == VehicleType.BIKE) {
+                bikeCount += parkingLotMap.get(parkingType);
+            } else {
+                bicycleCount += parkingLotMap.get(parkingType);
+            }
+        }
     }
 
 
@@ -67,6 +92,7 @@ public class ParkingLot {
     }
 
     public void getAvailableSlots() {
+
 
     }
 }
