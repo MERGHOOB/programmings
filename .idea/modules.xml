@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/DynamicProgramming/DynamicProgramming.iml" filepath="$PROJECT_DIR$/DynamicProgramming/DynamicProgramming.iml" />
       <module fileurl="file://$PROJECT_DIR$/LeetCode/LeetCode.iml" filepath="$PROJECT_DIR$/LeetCode/LeetCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/OOPS/OOPS.iml" filepath="$PROJECT_DIR$/OOPS/OOPS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.margub.parkinglot.iml" filepath="$PROJECT_DIR$/.idea/modules/com.margub.parkinglot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.margub.parkinglot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.margub.parkinglot.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.margub.parkinglot.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.margub.parkinglot.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/crackingTheCodingInterview/crackingTheCodingInterview.iml" filepath="$PROJECT_DIR$/crackingTheCodingInterview/crackingTheCodingInterview.iml" />
       <module fileurl="file://$PROJECT_DIR$/geeks-mustdo/geeks-mustdo.iml" filepath="$PROJECT_DIR$/geeks-mustdo/geeks-mustdo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/parkinglot.iml" filepath="$PROJECT_DIR$/.idea/modules/parkinglot.iml" />
