@@ -13,7 +13,7 @@ public interface IParkingManagementSystem {
 
     void add_parking_lot(String parkingLotName, Map<VehicleType, Integer> parkingLotMap, int entryGates, int exitGates);
 
-    boolean isAvaliable(String parkingLotName, VehicleType vehicleType);
+    boolean isAvailable(String parkingLotName, VehicleType vehicleType);
 
     boolean park_Vehicle(String parkingLotName, VehicleType vehicleType, EntryGate entryGate);
 

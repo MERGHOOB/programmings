@@ -38,7 +38,7 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
     }
 
     @Override
-    public boolean isAvaliable(String parkingLotName, VehicleType vehicleType) {
+    public boolean isAvailable(String parkingLotName, VehicleType vehicleType) {
 
         return getParkingLotByName(parkingLotName).isAvailable(vehicleType);
     }
@@ -49,6 +49,9 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
 
     @Override
     public boolean park_Vehicle(String parkingLotName, VehicleType vehicleType, EntryGate entryGate) {
+
+        map.get(parkingLotName).getEntryGates(entryGate).park;
+
         return false;
     }
 
