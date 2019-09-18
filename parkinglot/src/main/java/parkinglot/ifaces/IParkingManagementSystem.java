@@ -22,6 +22,6 @@ public interface IParkingManagementSystem {
 
     void print_total_out(String parkingLotName, int exitGate);
 
-    boolean unpark_vehicle(String parkingLotName, VehicleType vehicleType, ExitGate exitGate);
+    boolean unpark_vehicle(String parkingLotName, VehicleType vehicleType, int exitGate);
 
 }

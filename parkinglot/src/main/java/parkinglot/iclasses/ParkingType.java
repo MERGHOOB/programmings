@@ -9,9 +9,13 @@ public class ParkingType {
     private final VehicleType vehicleType;
     private final RESERVATION_STATUS reservation_status;
 
-    ParkingType(VehicleType vehicleType, RESERVATION_STATUS reservation_status) {
+    public ParkingType(VehicleType vehicleType, RESERVATION_STATUS reservation_status) {
         this.vehicleType = vehicleType;
         this.reservation_status = reservation_status;
+    }
+    public ParkingType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
+        this.reservation_status = RESERVATION_STATUS.DEFAULT;
     }
 
     public VehicleType getVehicleType() {

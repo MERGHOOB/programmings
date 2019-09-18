@@ -18,11 +18,12 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
 
     @Override
     public int getAvailableSlot() {
-//        parkingLots.forEach(
-//                parkingLot -> {
-//                    print(parkingLot.getParkingLotMap());
-//                }
-//        );
+
+        for(String parkingLot: parkingLotHashMap.keySet()) {
+
+            parkingLotHashMap.get(parkingLot).getAvailableSlots();
+        }
+
 
         return 1; //TODO
     }
@@ -73,7 +74,8 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
     }
 
     @Override
-    public boolean unpark_vehicle(String parkingLotName, VehicleType vehicleType, ExitGate exitGate) {
-        return false;
+    public boolean unpark_vehicle(String parkingLotName, VehicleType vehicleType, int exitGate) {
+        ParkingLot parkingLot = parkingLotHashMap.get(parkingLotName);
+        return parkingLot.unpark(vehicleType, exitGate);
     }
 }

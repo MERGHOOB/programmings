@@ -1,5 +1,7 @@
 package parkinglot.iclasses;
 
+import parkinglot.ienums.VehicleType;
+
 public class ExitGate {
     private final int gateNumber;
 
