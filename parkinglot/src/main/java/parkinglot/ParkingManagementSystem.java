@@ -1,7 +1,7 @@
 package parkinglot;
 
-import parkinglot.iclasses.EntryGate;
 import parkinglot.iclasses.ExitGate;
+import parkinglot.iclasses.ParkingType;
 import parkinglot.iclasses.parkings.ParkingLot;
 import parkinglot.ienums.VehicleType;
 import parkinglot.ifaces.IParkingManagementSystem;
@@ -18,11 +18,11 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
 
     @Override
     public int getAvailableSlot() {
-        parkingLots.forEach(
-                parkingLot -> {
-                    print(parkingLot.getParkingLotMap());
-                }
-        );
+//        parkingLots.forEach(
+//                parkingLot -> {
+//                    print(parkingLot.getParkingLotMap());
+//                }
+//        );
 
         return 1; //TODO
     }
@@ -32,7 +32,7 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
     }
 
     @Override
-    public void add_parking_lot(String parkingLotName, Map<VehicleType, Integer> parkingLotMap, int entryGates, int exitGates) {
+    public void add_parking_lot(String parkingLotName, Map<ParkingType, Integer> parkingLotMap, int entryGates, int exitGates) {
         parkingLots.add(new ParkingLot(parkingLotName, parkingLotMap, entryGates, exitGates));
 
     }
@@ -62,13 +62,14 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
     }
 
     @Override
-    public void print_total_in(String parkingLotName, EntryGate entryGate) {
+    public void print_total_in(String parkingLotName, int entryGate) {
 
+        parkingLotHashMap.get(parkingLotName).getEntryGate(entryGate).getIN();
     }
 
     @Override
-    public void print_total_out(String parkingLotName, ExitGate exitGate) {
-
+    public void print_total_out(String parkingLotName, int exitGate) {
+        parkingLotHashMap.get(parkingLotName).getExitGate(exitGate).getOUT();
     }
 
     @Override

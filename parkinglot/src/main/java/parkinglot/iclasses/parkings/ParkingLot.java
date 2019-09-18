@@ -1,6 +1,7 @@
 package parkinglot.iclasses.parkings;
 
 import parkinglot.iclasses.EntryGate;
+import parkinglot.iclasses.ExitGate;
 import parkinglot.iclasses.ParkingType;
 import parkinglot.ienums.RESERVATION_STATUS;
 import parkinglot.ienums.VehicleType;
@@ -14,7 +15,7 @@ public class ParkingLot {
     private String parkingLotName;
     private Map<ParkingType, Integer> parkingLotMap; // parking type with number of seats  present
     private Map<Integer, EntryGate> entryGates = new HashMap<>();
-    private int exitGates;
+    private Map<Integer, ExitGate> exitGates = new HashMap<>();
 
 
     int carDefaultCount = 0;
@@ -31,13 +32,20 @@ public class ParkingLot {
         fillCounters(parkingLotMap);
 //        this.entryGates = entryGates;
         fillEntryGates(numOfEntryGates);
-        this.exitGates = exitGates;
+        fillExitGates(exitGates);
     }
 
     private void fillEntryGates(int numOfEntryGates) {
         for (int i = 1; i <= numOfEntryGates; i++) {
 
             entryGates.put(i, new EntryGate(i));
+        }
+    }
+
+    private void fillExitGates(int numOfExitGates) {
+        for (int i = 1; i <= numOfExitGates; i++) {
+
+            exitGates.put(i, new ExitGate(i));
         }
     }
 
@@ -83,10 +91,6 @@ public class ParkingLot {
     }
 
 
-    public int getExitGates() {
-        return exitGates;
-    }
-
     public EntryGate getEntryGate(int entryGate) {
         return entryGates.get(entryGate);
     }
@@ -94,5 +98,9 @@ public class ParkingLot {
     public void getAvailableSlots() {
 
 
+    }
+
+    public ExitGate getExitGate(int exitGate) {
+        return exitGates.get(exitGate);
     }
 }
