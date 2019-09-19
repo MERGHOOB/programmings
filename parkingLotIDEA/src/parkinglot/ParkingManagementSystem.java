@@ -1,6 +1,5 @@
 package parkinglot;
 
-import parkinglot.iclasses.ExitGate;
 import parkinglot.iclasses.ParkingType;
 import parkinglot.iclasses.parkings.ParkingLot;
 import parkinglot.ienums.VehicleType;
@@ -39,7 +38,7 @@ public class ParkingManagementSystem implements IParkingManagementSystem {
 
     @Override
     public void add_parking_lot(String parkingLotName, Map<ParkingType, Integer> parkingLotMap, int entryGates, int exitGates) {
-        parkingLots.add(new ParkingLot(parkingLotName, parkingLotMap, entryGates, exitGates));
+        parkingLotHashMap.put( parkingLotName, new ParkingLot(parkingLotName, parkingLotMap, entryGates, exitGates));
 
     }
 
