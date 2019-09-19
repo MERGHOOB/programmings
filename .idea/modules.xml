@@ -10,7 +10,6 @@
       <module fileurl="file://$PROJECT_DIR$/crackingTheCodingInterview/crackingTheCodingInterview.iml" filepath="$PROJECT_DIR$/crackingTheCodingInterview/crackingTheCodingInterview.iml" />
       <module fileurl="file://$PROJECT_DIR$/geeks-mustdo/geeks-mustdo.iml" filepath="$PROJECT_DIR$/geeks-mustdo/geeks-mustdo.iml" />
       <module fileurl="file://$PROJECT_DIR$/parkingLotIDEA/parkingLotIDEA.iml" filepath="$PROJECT_DIR$/parkingLotIDEA/parkingLotIDEA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/parkinglot.iml" filepath="$PROJECT_DIR$/.idea/modules/parkinglot.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/parkinglot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/parkinglot.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/parkinglot.test.iml" filepath="$PROJECT_DIR$/.idea/modules/parkinglot.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/programming.iml" filepath="$PROJECT_DIR$/programming.iml" />
