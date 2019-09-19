@@ -28,6 +28,9 @@ public class Main {
 
         assertTrue(parkingManagementSystem.isAvailable(PVR_KORAMANGALA, VehicleType.CAR));
         assertTrue(parkingManagementSystem.getParkingLotHashMap().get(PVR_KORAMANGALA).getEntryGate(2).getParkingLot().isAvailable(VehicleType.BIKE));
+
+
+
     }
 
     private static void assertTrue(boolean available) {
