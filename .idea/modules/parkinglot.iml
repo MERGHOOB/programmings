@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="parkinglot" external.linked.project.path="$MODULE_DIR$/../../parkinglot" external.root.project.path="$MODULE_DIR$/../../parkinglot" external.system.id="GRADLE" external.system.module.group="com.margub" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="com.margub" externalSystemModuleVersion="1.0-SNAPSHOT" linkedProjectId="parkinglot" linkedProjectPath="$MODULE_DIR$/../../parkinglot" rootProjectPath="$MODULE_DIR$/../../parkinglot" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../parkinglot">
+      <excludeFolder url="file://$MODULE_DIR$/../../parkinglot/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../parkinglot/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../parkinglot/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
