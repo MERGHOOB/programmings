@@ -11,4 +11,12 @@ public class PrintUtility {
             System.out.println();
         }
     }
+
+
+    public static void print(int [] arr) {
+        for(int val : arr) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+    }
 }
