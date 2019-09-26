@@ -43,6 +43,8 @@ public class MatrixChainMultiplication {
     }
 
 
+
+
     public static void main(String[] args) {
         int[] nums = {10, 30, 5, 60};
 
