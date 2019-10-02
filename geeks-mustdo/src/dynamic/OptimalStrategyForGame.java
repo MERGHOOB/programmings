@@ -1,5 +1,9 @@
 package dynamic;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /*
 N pots, each with some number of gold coins, are arranged  in a line. You are playing a game against another player.
 You take turns picking a pot of gold. You may pick a pot from either end of the line, remove the pot, and keep the gold pieces.
@@ -38,6 +42,23 @@ Output:
 public class OptimalStrategyForGame {
 
     public static void main(String[] args) {
+
+        try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+            int testCases = Integer.parseInt(bufferedReader.readLine());
+            while(testCases--!= 0) {
+                int n = Integer.parseInt(bufferedReader.readLine());
+                String spaceSeparatedString = bufferedReader.readLine();
+                String[] s = spaceSeparatedString.split(" ");
+                int [] coins = new int[n];
+                for(int i = 0; i<n; i++) {
+                    coins[i] = Integer.parseInt(s[i].trim());
+                }
+                System.out.println(maximumCoinsWithDPWithoutSumOf(coins));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         int[] coins = {8, 15, 3, 7};
         System.out.println(maximumCoins(coins));
 
