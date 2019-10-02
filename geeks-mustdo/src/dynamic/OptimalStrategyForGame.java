@@ -38,14 +38,26 @@ Output:
 public class OptimalStrategyForGame {
 
     public static void main(String[] args) {
-        int[] coins = {8,15,3,7};
+        int[] coins = {8, 15, 3, 7};
         System.out.println(maximumCoins(coins));
+
+        System.out.println(maximumCoinsWithDPWithSumOfExtraBurden(coins));
+        System.out.println(maximumCoinsWithDPWithoutSumOf(coins));
         coins = new int[]{2, 2, 2, 2};
         System.out.println(maximumCoins(coins));
-        coins = new int[]{20,30,2,2,2,10};
+
+        System.out.println(maximumCoinsWithDPWithSumOfExtraBurden(coins));//, 30, new int[coins.length][coins.length]));
+        System.out.println(maximumCoinsWithDPWithoutSumOf(coins));
+        coins = new int[]{20, 30, 2, 2, 2, 10};
         System.out.println(maximumCoins(coins));
-        coins = new int[]{5, 3, 7,15};
+
+        System.out.println(maximumCoinsWithDPWithSumOfExtraBurden(coins));//, 30, new int[coins.length][coins.length]));
+        System.out.println(maximumCoinsWithDPWithoutSumOf(coins));
+        coins = new int[]{5, 3, 7, 15};
         System.out.println(maximumCoins(coins));
+
+        System.out.println(maximumCoinsWithDPWithSumOfExtraBurden(coins));//, 30, new int[coins.length][coins.length]));
+        System.out.println(maximumCoinsWithDPWithoutSumOf(coins));
     }
 
     private static int maximumCoins(int[] coins) {
@@ -76,10 +88,81 @@ public class OptimalStrategyForGame {
             return Integer.max(coins[i], coins[j]);
         }
 
-        return Integer.max(sum - maximumCoins(coins, i + 1, j, sum-coins[i]),
-                sum - maximumCoins(coins, i, j - 1, sum-coins[j]));
+        return Integer.max(sum - maximumCoins(coins, i + 1, j, sum - coins[i]),
+                sum - maximumCoins(coins, i, j - 1, sum - coins[j]));
 
 
+    }
+
+    /*
+        we have vi ................ vj coins:
+        for win if i pickup: vi, then other player will get maximum value of vi+1, vj and vice versa
+        // so we will get minValue for rest of sequence
+        so: for me to win i will get maximum: Max [vi + min(vi+2..vj, vi+1 vj-1), vj + minValue(vi+1vj-1, vi,j-2)]
+
+        base case: if i+1 == j : Max[vi, vj]
+            i == j : vj
+
+
+     */
+    private static int maximumCoinsWithDPWithoutSumOf(int[] coins) {
+        int[][] dp = new int[coins.length][coins.length];
+
+        for (int gap = 0; gap < coins.length; gap++) {
+
+            for (int i = 0, j = gap; j < coins.length; i++, j++) { // diff of j-i == gap between them
+
+                if (i == j) { // this case is handled in else part, once can remove
+                    dp[i][j] = coins[i];
+                } else if (i + 1 == j) { // this case is handled in else part, one can remove
+                    dp[i][j] = Integer.max(coins[i], coins[j]);
+                } else { // this block is sufficient to handle above if blocks
+                    // for i+2, j;
+                    int x = 0, y = 0, z = 0;
+                    if (i + 2 <= j) {
+                        x = dp[i + 2][j];
+                        y = dp[i + 1][j - 1];
+                        z = dp[i][j - 2];
+                    }
+                    dp[i][j] = Integer.max(coins[i] + Integer.min(x, y),
+                            coins[j] + Integer.min(y, z));
+                }
+            }
+
+        }
+        return dp[0][coins.length - 1];
+
+
+    }
+
+    private static int maximumCoinsWithDPWithSumOfExtraBurden(int[] coins) {
+
+        int dp[][] = new int[coins.length][coins.length];
+        for (int i = 1; i < dp.length; i++) {
+            dp[i - 1][i] = Integer.max(coins[i], coins[i - 1]);
+            dp[i][i - 1] = dp[i - 1][i];
+        }
+
+        for (int len = 3; len <= coins.length; len++) {
+            for (int i = 0; i < coins.length - len + 1; i++) {
+                int j = i + len - 1;
+                dp[i][j] = Integer.max(sumof(coins, i, j) - dp[i + 1][j],
+                        sumof(coins, i, j) - dp[i][j - 1]);
+            }
+
+
+        }
+
+        return dp[0][dp.length - 1];
+
+    }
+
+    private static int sumof(int[] coins, int i, int j) {
+        int sum = 0;
+        for (; i <= j; i++) {
+            sum += coins[i];
+        }
+        return sum;
     }
 
 
