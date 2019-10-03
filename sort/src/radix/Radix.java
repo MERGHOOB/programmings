@@ -1,3 +1,5 @@
+package radix;
+
 import org.omg.CORBA.INTERNAL;
 
 public class Radix {
@@ -19,7 +21,6 @@ public class Radix {
         // instead of passing digit number, exp is passed exp is 10^i
 
         for(int digitPlace =1; maxNumber/digitPlace > 0; digitPlace *=10) { // it gives the value of exp
-            System.out.println(digitPlace);
             countSort(arr, n, digitPlace);
         }
     }
@@ -34,7 +35,6 @@ public class Radix {
             int digit = (arr[i] / digitPlace) % 10; // value of digit based on digit place
             countOnDigits[digit]++; // increment if digit found
         }
-        System.out.println();
         // change count[i] so that count[i] now contains
         // acutal postion of this digit in output
         for(int i =1; i<10; i++) {
