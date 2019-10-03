@@ -36,6 +36,7 @@ public class GroupAnagrams {
         List<List<String>> lists = new ArrayList<>();
         lists.addAll(hashMap.values());
 
+
         return lists;
     }
 
@@ -66,7 +67,20 @@ public class GroupAnagrams {
         return String.valueOf(key);
     }
     public static void main(String[] args) {
-        String [] strings = {"eat", "tea", "tan", "ate", "nat", "bat"};
-        System.out.println(new GroupAnagrams().groupAnagrams(strings));
+//        String [] strings = {"eat", "tea", "tan", "ate", "nat", "bat"};
+//        System.out.println(new GroupAnagrams().groupAnagrams(strings));
+
+//        String[] arr = {"3","30","34","5","9"};
+        String[] arr = {"30","9"};
+        Arrays.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String first1, String second2) {
+               return (first1+second2).compareTo(second2+first1);
+            }
+        });
+
+        for(String str: arr) {
+            System.out.println(str);
+        }
     }
 }
