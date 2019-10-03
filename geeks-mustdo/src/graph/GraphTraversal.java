@@ -1,9 +1,7 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
+
 /*
 https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
 
@@ -62,10 +60,31 @@ public class GraphTraversal {
         // add your code here
     }
 
+
+    static void dfs(int src, List<List<Integer>> list, boolean vis[])
+    {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(src);
+        vis[src] = true;
+
+        while(!stack.isEmpty()) {
+            int pop = stack.pop();
+            System.out.print(pop + " ");
+            List<Integer> integers = list.get(pop);
+            for(int neighbour: integers) {
+                if(vis[neighbour]) {
+                    continue;
+                }
+                stack.push(neighbour);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         List<List<Integer>> graph = createGraph();
 
         bfs(1, graph, new boolean[5]);
+        dfs(1, graph, new boolean[5]);
 
     }
 
