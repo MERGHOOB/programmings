@@ -2,6 +2,7 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 /*
 https://practice.geeksforgeeks.org/problems/bfs-traversal-of-graph/1
@@ -36,7 +37,7 @@ Output:
  */
 public class GraphTraversal {
 
-    static void bfs(int src, ArrayList<ArrayList<Integer>> list, boolean vis[]) { // ArrayList is usde
+    static void bfs(int src, List<List<Integer>> list, boolean vis[]) { // ArrayList is usde
 
         if (vis[src]) {
             return;
@@ -47,7 +48,7 @@ public class GraphTraversal {
         while (!queue.isEmpty()) {
             int remove = queue.remove();
             System.out.print(remove + " ");
-            ArrayList<Integer> integers = list.get(remove);
+            List<Integer> integers = list.get(remove);
             for (int vertex : integers) {
                 if (!vis[vertex]) {
                     queue.add(vertex);
@@ -62,14 +63,14 @@ public class GraphTraversal {
     }
 
     public static void main(String[] args) {
-        ArrayList<ArrayList<Integer>> graph = createGraph();
+        List<List<Integer>> graph = createGraph();
 
         bfs(1, graph, new boolean[5]);
 
     }
 
-    private static ArrayList<ArrayList<Integer>> createGraph() {
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+    private static List<List<Integer>> createGraph() {
+        List<List<Integer>> graph = new ArrayList<>();
 //        4  // nodes
         for (int i = 1; i <= 5; i++) {
             graph.add(new ArrayList<>());
