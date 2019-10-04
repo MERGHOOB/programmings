@@ -76,6 +76,7 @@ public class GraphTraversal {
                     continue;
                 }
                 stack.push(neighbour);
+                vis[neighbour] = true;
             }
         }
     }
@@ -97,14 +98,19 @@ public class GraphTraversal {
 //        5  //edges
 //        1 2  //showing edge from node 1 to node 2
         graph.get(1).add(2);
+        graph.get(2).add(1);
 //        2 4  //showing edge from node 2 to node 4
         graph.get(2).add(4);
+        graph.get(2).add(2);
 //        3 1  //showing edge from node 3 to node 1
         graph.get(3).add(1);
+        graph.get(1).add(3);
 //        3 4  //showing edge from node 3 to node 4
         graph.get(3).add(4);
+        graph.get(4).add(3);
 //        4 2  //showing edge from node 4 to node 2
         graph.get(4).add(2);
+        graph.get(2).add(4);
 
         return graph;
 
