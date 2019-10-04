@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ZeroOneKnapsack {
 
-    public int knappSack(int[] values, int[] weights, int remainWeight, int currentItemIndex) {
+    private int knappSack(int[] values, int[] weights, int remainWeight, int currentItemIndex) {
 
         if (remainWeight < 0) {
             return Integer.MIN_VALUE;
@@ -31,9 +31,9 @@ public class ZeroOneKnapsack {
 
         // Knapsack capacity
         int W = 10;
-        System.out.println(new ZeroOneKnapsack().knappSack(v, w, 10, w.length - 1));
-        System.out.println(new ZeroOneKnapsack().knappSackWithLookUp(v, w, 10, w.length - 1));
-        System.out.println(new ZeroOneKnapsack().knappSackWithBottomUp(v, w, 10));
+        System.out.println(new ZeroOneKnapsack().knappSack(v, w, W, w.length - 1));
+        System.out.println(new ZeroOneKnapsack().knappSackWithLookUp(v, w, W, w.length - 1));
+        System.out.println(new ZeroOneKnapsack().knappSackWithBottomUp(v, w, W));
     }
 
     private static Map<String, Integer> lookUp = new HashMap<>();
@@ -74,7 +74,7 @@ public class ZeroOneKnapsack {
 
             for (int j = 0; j <= weightCapacity; j++) { // consider all weight from 0 to weightCapacity
 
-                if (weights[i - 1] > j) { // can't collect
+                if (weights[i - 1] > j) { // can't collect as weight of item is greater than weight
                     dp[i][j] = dp[i - 1][j];
                 } else {
                     dp[i][j] = Integer.max(dp[i - 1][j], // no collection
@@ -83,7 +83,7 @@ public class ZeroOneKnapsack {
             }
         }
 
-        return dp[values.length][weightCapacity];
+        return dp[values.length][weightCapacity]; // O(nw) time  O(nw) space
 
     }
 
