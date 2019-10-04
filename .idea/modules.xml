@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DynamicProgramming/DynamicProgramming.iml" filepath="$PROJECT_DIR$/DynamicProgramming/DynamicProgramming.iml" />
       <module fileurl="file://$PROJECT_DIR$/LeetCode/LeetCode.iml" filepath="$PROJECT_DIR$/LeetCode/LeetCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/OOPS/OOPS.iml" filepath="$PROJECT_DIR$/OOPS/OOPS.iml" />
       <module fileurl="file://$PROJECT_DIR$/algorithms/algorithms.iml" filepath="$PROJECT_DIR$/algorithms/algorithms.iml" />
@@ -17,6 +16,7 @@
       <module fileurl="file://$PROJECT_DIR$/programming.iml" filepath="$PROJECT_DIR$/programming.iml" />
       <module fileurl="file://$PROJECT_DIR$/sort/sort.iml" filepath="$PROJECT_DIR$/sort/sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/spoj/spoj.iml" filepath="$PROJECT_DIR$/spoj/spoj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DynamicProgramming/techdelightDP.iml" filepath="$PROJECT_DIR$/DynamicProgramming/techdelightDP.iml" />
     </modules>
   </component>
 </project>
