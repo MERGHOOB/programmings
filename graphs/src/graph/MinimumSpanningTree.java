@@ -1,7 +1,6 @@
 package graph;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -33,27 +32,17 @@ public class MinimumSpanningTree {
             }
 
 
-            Arrays.sort(edges, new Comparator<Edge>() {
-                @Override
-                public int compare(Edge o1, Edge o2) {
-                    Integer first = o1.weight;
-                    Integer second = o2.weight;
-                    return first.compareTo(second);
-                }
-
-                @Override
-                public boolean equals(Object obj) {
-                    return false;
-                }
-            });
-
-            initilaize();
             System.out.println(kruskal(edges));
+
 
         }
     }
 
     private static int kruskal(Edge[] edges) {
+
+        sortEdges(edges);
+
+        intializeDisjointSet();
         int minimumCost = 0;
 
         for(Edge edge: edges) {
@@ -71,7 +60,23 @@ public class MinimumSpanningTree {
         return minimumCost;
     }
 
-    private static void initilaize() {
+    private static void sortEdges(Edge[] edges) {
+        Arrays.sort(edges, new Comparator<Edge>() {
+            @Override
+            public int compare(Edge o1, Edge o2) {
+                Integer first = o1.weight;
+                Integer second = o2.weight;
+                return first.compareTo(second);
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return false;
+            }
+        });
+    }
+
+    private static void intializeDisjointSet() {
         for(int i = 0; i<MAX; i++) {
             disJoint[i] = i;
         }
@@ -93,20 +98,6 @@ public class MinimumSpanningTree {
         return x;
     }
 
-    static class Edge {
-        int start, end, weight;
 
-        public Edge(int start, int end, int weight) {
-            this.start = start;
-            this.end = end;
-            this.weight = weight;
-        }
-
-        public String toString() {
-
-            return start + " " + end + " " + weight;
-        }
-
-    }
 
 }
