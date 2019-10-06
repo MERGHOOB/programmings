@@ -2,6 +2,7 @@
   <dictionary name="mekhan">
     <words>
       <w>heapify</w>
+      <w>warshall</w>
     </words>
   </dictionary>
 </component>
