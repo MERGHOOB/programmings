@@ -1,32 +1,34 @@
-package graph;
+package graph.mspantree;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 /*
 https://www.hackerearth.com/practice/algorithms/graphs/minimum-spanning-tree/tutorial/
  */
-public class MinimumSpanningTree {
+public class MinimumSpanningTreeWithKruskal {
 
     public static final int MAX = 10005;
-    private static int [] disJoint = new int[MAX];
+    private static int[] disJoint = new int[MAX];
+
     public static void main(String[] args) throws Exception {
-//        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("graphs/input.txt")))) {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("graphs/input.txt")))) {
+//        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
             String str = bufferedReader.readLine();
             String[] s = str.split(" ");
             int vs = Integer.parseInt(s[0].trim());
             int es = Integer.parseInt(s[1].trim());
 
-            Edge [] edges = new Edge[es];
-            for(int i = 0; i<es;i++) {
+            Edge[] edges = new Edge[es];
+            for (int i = 0; i < es; i++) {
                 s = bufferedReader.readLine().split(" ");
                 edges[i] = new Edge(Integer.parseInt(s[0].trim()),
-                                    Integer.parseInt(s[1].trim()),
-                                    Integer.parseInt(s[2].trim()));
+                        Integer.parseInt(s[1].trim()),
+                        Integer.parseInt(s[2].trim()));
 
-                if(edges[i].toString().length() <= 0) {
+                if (edges[i].toString().length() <= 0) {
                     System.out.println(edges[i]);
                 }
             }
@@ -45,12 +47,12 @@ public class MinimumSpanningTree {
         intializeDisjointSet();
         int minimumCost = 0;
 
-        for(Edge edge: edges) {
+        for (Edge edge : edges) {
 
             int x = edge.start;
             int y = edge.end;
 
-            if(findRoot(x) != findRoot(y)) {
+            if (findRoot(x) != findRoot(y)) {
                 minimumCost += edge.weight;
                 union(x, y);
             }
@@ -77,7 +79,7 @@ public class MinimumSpanningTree {
     }
 
     private static void intializeDisjointSet() {
-        for(int i = 0; i<MAX; i++) {
+        for (int i = 0; i < MAX; i++) {
             disJoint[i] = i;
         }
     }
@@ -91,7 +93,7 @@ public class MinimumSpanningTree {
     }
 
     private static int findRoot(int x) {
-        while(disJoint[x] != x) {
+        while (disJoint[x] != x) {
             disJoint[x] = disJoint[disJoint[x]]; // path compression
             x = disJoint[x];
         }
@@ -99,5 +101,21 @@ public class MinimumSpanningTree {
     }
 
 
+    private static class Edge {
+        int start;
+        int end;
+        int weight;
 
+        Edge(int start, int end, int weight) {
+            this.start = start;
+            this.end = end;
+            this.weight = weight;
+        }
+
+        public String toString() {
+
+            return start + " " + end + " " + weight;
+        }
+
+    }
 }
