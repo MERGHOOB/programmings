@@ -22,31 +22,55 @@ in such a way, that if there is an edge directed towards vertex v, from vertex v
 public class TopologicalSort {
 
 
+    static class DFSNode {
+        boolean isParent;
+        int vertex;
+
+        DFSNode(boolean p, int v) {
+            isParent = p;
+            vertex = v;
+        }
+    }
+
     private int[] sortUsingDFS(List<List<Integer>> graph) {
         int[] sortArray = new int[graph.size()];
-
-        Stack<Integer> stack = new Stack<>();
-        stack.push(0);
-
         boolean[] visited = new boolean[graph.size()];
-        visited[0] = true;
         int indexToFill = 0;
-        while (!stack.isEmpty()) {
-            Integer pop = stack.pop();
-            sortArray[indexToFill++] = pop;
 
-            for(int val: graph.get(pop)) {
-                if(!visited[val]) {
-                    stack.push(val);
-                    visited[val] = true;
+        Stack<DFSNode> dfs = new Stack<>();
+        Stack<Integer> postOrder = new Stack<>(); // as child will be the last to fill. // required for postorder
+
+        for (int i = 0; i < graph.size(); i++) {
+            if (!visited[i]) {
+                dfs.push(new DFSNode(false, i)); // initially consider it as a child
+            }
+
+            while (!dfs.isEmpty()) {
+                DFSNode pop = dfs.pop();
+                // following line is not required for topo sort but for post order which makes it similar to BFS
+                if (pop.isParent) {
+                    postOrder.push(pop.vertex);
+                    continue;
+                } // poostorder
+                visited[pop.vertex] = true;
+//                sortArray[indexToFill++] = pop.vertex;
+                dfs.push(new DFSNode(true, pop.vertex)); // make it as parent. so that can be pushed postorder
+                for (int child : graph.get(pop.vertex)) {
+                    if (!visited[child]) {
+                        dfs.push(new DFSNode(false, child));
+                    }
                 }
             }
         }
 
 
+        while (!postOrder.isEmpty()) {
+            sortArray[indexToFill++] = postOrder.pop();
+        }
 
         return sortArray;
     }
+
     private int[] sortUsingBFS(List<List<Integer>> graph) {
         int[] sortArray = new int[graph.size()];
 
@@ -63,7 +87,7 @@ public class TopologicalSort {
             }
         }
 
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>(); // For lexographically smaller sort, use PriorityQueue
         /*
         en-Queue all independent vertex where no incoming path.
          */
@@ -133,8 +157,6 @@ public class TopologicalSort {
         graph.get(3).add(5);
 
         graph.get(4).add(5);
-
-
 
 
         return graph;
