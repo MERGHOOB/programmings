@@ -1,62 +1,84 @@
 package graph.shortestPath;
 
+
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.List;
 
 public class FloydWarshall {
-    public static final Long INFINTIY = 10000000000L;
+
+    private static final int INF = 10000000;
+    public static void main1(String[] args) {
+
+        int[][] graph = { {0,   5,  INF, 10},
+                {INF, 0,   3, INF},
+                {INF, INF, 0,   1},
+                {INF, INF, INF, 0}
+        };
+
+
+        floydWarshall(graph);
+    }
     public static void main(String[] args) throws IOException {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("graphs/input.txt")))) {
-            String split[] = bufferedReader.readLine().split(" ");
-
-            int vs = Integer.parseInt(split[0]);
-            int es = Integer.parseInt(split[1]);
-
-            long[][] dist = new long[vs][vs];
-            for (int i = 0; i < vs; i++) {
-                Arrays.fill(dist[i], INFINTIY);
-            }
-            for(int i = 0; i<vs; i++) {
-                dist[i][i] = 0;
-            }
-            for (int i = 0; i < es; i++) {
-                split = bufferedReader.readLine().split(" ");
-                int src = Integer.parseInt(split[0]) - 1;
-                int dest = Integer.parseInt(split[1]) - 1;
-                int weight = Integer.parseInt(split[2]);
-
-                dist[src][dest] = weight;
-            }
-//            printDist(vs, dist);
-            System.out.println("-------------------------------------");
-
-            for (int k = 0; k <vs; k++) { // intermediate k vertices
-                for (int i = 0; i < vs; i++) {
-                    for (int j = 0; j < vs; j++) {
-                        if(dist[i][j] > dist[i][k] + dist[k][j]) {
-                            dist[i][j] = dist[i][k] + dist[k][j];
-                        }
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int testcases = Integer.parseInt(bufferedReader.readLine());
+        while(testcases-- != 0) {
+                int v = Integer.parseInt(bufferedReader.readLine());
+                int [][] graph = new int[v][v];
+                for(int i =0; i<v; i++) {
+                    String[] spl = bufferedReader.readLine().split(" ");
+                    for(int j=0; j<v; j++) {
+                        graph[i][j] = Integer.parseInt(spl[j]);
                     }
                 }
+                floydWarshall(graph);
+        }
+/*
+        int[][] graph = { {0,   5,  INF, 10},
+                {INF, 0,   3, INF},
+                {INF, INF, 0,   1},
+                {INF, INF, INF, 0}
+        };
 
+
+        floydWarshall(graph);
+
+ */
+    }
+
+    private static void floydWarshall(int[][] graph) {
+
+
+        int [][] dist = new int[graph.length][graph[0].length];
+        for(int i =0; i<graph.length; i++) {
+            for(int j =0; j<graph.length; j++) {
+                dist[i][j] = graph[i][j];
             }
+        }
 
-            printDist(vs, dist);
+        for(int k = 0; k<graph.length; k++) {
+            for(int i = 0; i<graph.length; i++) {
+                for(int j = 0; j<graph.length; j++) {
 
+                    if(dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                    }
+                }
+            }
+        }
+
+        for(int i =0; i<graph.length; i++) {
+            for(int j =0; j<graph.length; j++) {
+                if(dist[i][j] == INF) {
+                    System.out.print("INF ");continue;
+                }
+                System.out.print(dist[i][j] + " ");
+            }
+            System.out.println();
         }
 
     }
 
-    private static void printDist(int vs, long[][] dist) {
-//        for (int i = 0; i < vs; i++) {
-            for (int j = 1; j < vs; j++) {
-                System.out.print(dist[0][j] + " ");
-            }
 
-//        }
-    }
 }
-
