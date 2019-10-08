@@ -127,7 +127,7 @@ public class ArticulationPoint {
                             aps[vertex] = true;
                         }
                 }
-                else if(parent[vertex] != i) {// if already visited it means minDisovery time can be udpated with min of current discovery and already discovered time
+                else if(parent[vertex] != i) {// discoveryTime of child is less than minDisvoerytime of vertex then update it.
                     minDiscoveryTime[vertex] = Integer.min(discoveryTime[i], minDiscoveryTime[vertex]);
                 }
         }
