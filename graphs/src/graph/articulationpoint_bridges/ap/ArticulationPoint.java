@@ -1,11 +1,32 @@
 package graph.articulationpoint_bridges.ap;
 
-import java.util.Stack;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class ArticulationPoint {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String [] split = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(split[0]);
+        int m = Integer.parseInt(split[1]);
 
+        int graph[][] = new int[n][n];
+
+        for(int i =0; i<m;i++) {
+            try {
+                split = bufferedReader.readLine().split(" ");
+                 int u = Integer.parseInt(split[0]);
+                 int v = Integer.parseInt(split[1]);
+                 graph[u][v] = graph[v][u] = 1;
+            }catch (Exception e) {
+
+            }
+        }
+        findArticulationPointWithBackEdge(graph, n);
+        /*
         int graph[][] = {
                 {0,1,0,0,0,1},
                 {0,0,1,1,0,0},
@@ -15,7 +36,102 @@ public class ArticulationPoint {
                 {1,0,0,0,0,0},
         };
 
-        System.out.println(findArticulationPointBruteForce(graph, 6));
+//        System.out.println(findArticulationPointBruteForce(graph, 6));
+        System.out.println(findArticulationPointWithBackEdge(graph, 6));
+*/
+    }
+    static class Bridge implements Comparable<Bridge>{
+        int first, second;
+        Bridge(int u, int v){
+                if(u < v) {
+                    this.first = u;
+                    this.second = v;
+                }
+                else {
+                    this.first = v;
+                    this.second = u;
+                }
+        }
+
+        @Override
+        public int compareTo(Bridge o) {
+            return this.first != o.first ? this.first - o.first : this.second - o.second;
+        }
+    }
+    private static int findArticulationPointWithBackEdge(int[][] graph, int n) {
+        boolean visited[] = new boolean[n];
+        int[] discoveryTime = new int[n]; // by default 0 in each cell
+        int[] minDiscoveryTime = new int[n]; // by default 0 in each cell
+        Arrays.fill(minDiscoveryTime, Integer.MAX_VALUE);
+        int[] parent  = new int[n] ;
+        Arrays.fill(parent, -1);
+        boolean aps[] = new boolean[n]; // initally all false by default
+
+        // Need Bridges
+        TreeSet<Bridge> bridges = new TreeSet<>();
+        for(int i =0; i<n; i++) {
+            dfsForBackEdge(graph, visited,discoveryTime, minDiscoveryTime, parent, aps, i, n, bridges);
+        }
+
+
+        int count  = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i =0; i<n; i++) {
+            if(aps[i]) {
+                count++;
+                stringBuilder.append(i).append(" ");
+            }
+        }
+        System.out.println(count);
+        System.out.println(stringBuilder);
+
+        System.out.println(bridges.size());
+        for(Bridge bridge: bridges) {
+            System.out.println(bridge.first + " " + bridge.second);
+        }
+
+
+
+        return count;
+    }
+    private static int TIME = 0;
+    private static void dfsForBackEdge(int[][] graph, boolean[] visited, int[] discoveryTime, int[] minDiscoveryTime, int[] parent, boolean[] aps, int vertex, int n, TreeSet<Bridge> bridges) {
+        visited[vertex] = true;
+        discoveryTime[vertex]  =  minDiscoveryTime[vertex] = ++TIME;
+
+        int child = 0; // check the child of vertex:
+        for(int i = 0; i<n;i++) {
+                if(graph[vertex][i] == 0) // there is no edge we can to dfs there.
+                {
+                    continue;
+                }
+
+                if(!visited[i]) {
+
+                        child = child +1;
+                        parent[i] = vertex;
+                        dfsForBackEdge(graph, visited, discoveryTime, minDiscoveryTime, parent, aps, i, n, bridges);
+                        minDiscoveryTime[vertex] = Integer.min(minDiscoveryTime[i], minDiscoveryTime[vertex]);
+
+                        if(minDiscoveryTime[i] > discoveryTime[vertex]) {
+//                            System.out.println(i + "----------------" + vertex);
+                            bridges.add(new Bridge(i, vertex));
+                        }
+
+                        if(parent[vertex] == -1 && child > 1) {
+                            // if it is a root // more than one child it means it will seprate both of the child.
+                            aps[vertex] = true;
+                        }
+                        if(parent[vertex] != -1 && minDiscoveryTime[i] >= discoveryTime[vertex]) {
+                            // if vertex is not root and min discoverty time of any child is grater than vertex,it is ap.
+                            aps[vertex] = true;
+                        }
+                }
+                else if(parent[vertex] != i) {// if already visited it means minDisovery time can be udpated with min of current discovery and already discovered time
+                    minDiscoveryTime[vertex] = Integer.min(discoveryTime[i], minDiscoveryTime[vertex]);
+                }
+        }
+
 
     }
 
