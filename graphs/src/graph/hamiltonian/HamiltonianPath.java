@@ -3,6 +3,7 @@ package graph.hamiltonian;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 public class HamiltonianPath {
 
@@ -41,15 +42,47 @@ public class HamiltonianPath {
                 split = bufferedReader.readLine().split(" ");
                 int u = Integer.parseInt(split[0]);
                 int v = Integer.parseInt(split[1]);
-                graph[u][v] = graph[v][u] = true;
+                graph[u][v] =true;
+//                graph[v][u] = true;
 //                reverseGraph[v][u] = 1;
             } catch (Exception e) {
 
             }
         }
 //        findHamiltonianPath(graph);
-        System.out.println(findHamiltonianPathWithDPBellMan(graph)? "YES" : "NO");
+//        System.out.println(findHamiltonianPathWithDPBellMan(graph)? "YES" : "NO");
+        System.out.println(findHamiltonianPathWithDFS(graph)? "YES" : "NO");
 
+    }
+
+    private static boolean findHamiltonianPathWithDFS(boolean[][] graph) {
+        int vertices = graph.length;
+
+        boolean [] visited = new boolean[vertices];
+        for(int i = 0; i<vertices;i++) {
+            visited[i] = true;
+            if (dfs(graph, visited, i, 1)) {
+                return true;
+            }
+            visited[i] = false;
+        }
+        return false;
+    }
+
+    private static boolean dfs(boolean[][] graph, boolean[] visited, int source, int count) {
+        if(count == graph.length) {
+            return true;
+        }
+        for(int v = 0; v<graph.length; v++) {
+            if(graph[source][v]) {
+                visited[v] = true;
+                if(dfs(graph,visited, v, count+1)) {
+                    return true;
+                }
+                visited[v] = false;
+            }
+        }
+        return false;
     }
 
     private static boolean findHamiltonianPathWithDPBellMan(boolean[][] graph) {
