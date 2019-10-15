@@ -5,6 +5,32 @@ package string;
 
 public class LC_647_PalindromicSubString {
 
+/*
+expandAroundCenter:
+    aaa; even and odd
+    a|a|a: , total values will become 2*n -1;
+
+    consider 0th center: left = 0; right = 0+0 = 0;
+    consider 1'st center: left = 0; right = 0+1;
+ */
+
+    public static int countSubstrings1(String s) {
+        int res = 0;
+        int centers = 2*s.length() -1;
+
+        for(int center = 0; center < centers; center++) {
+
+            int left = center/2;
+            int right = left + center%2;
+            while (left >=0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                res++;
+                left--; // exapnd 1 by to left
+                right++; // expand 1 by right
+            }
+        }
+
+        return res;
+    }
 
 /* DP SOLUTION
     Consider the case: aabaa
