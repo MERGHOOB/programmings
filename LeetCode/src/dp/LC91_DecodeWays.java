@@ -12,8 +12,28 @@ import java.util.Arrays;
  */
 public class LC91_DecodeWays {
 
-
     public static int numDecodings(String s) {
+        if(s == null || s.isEmpty()) {
+            return 0;
+        }
+        int n = s.length();
+        int dp[] = new int[n+1];
+        dp[0] = 1;
+        dp[1] = s.charAt(0) == '0' ? 0 :1;
+        for(int i = 2; i<dp.length;i++) {
+            int one = s.charAt(i-1) - '0';
+            int two = (s.charAt(i-2) - '0') * 10 + one;
+            if(one > 0){
+                dp[i] += dp[i-1];
+            }
+            if(two >= 10 && two < 27) {
+                dp[i] += dp[i-2];
+            }
+        }
+        return dp[n];
+    }
+
+    public static int numDecodings1(String s) {
         if (s.isEmpty() || s.contains("00") || s.startsWith("0")) {
             return 0;
         }
