@@ -21,12 +21,12 @@ public class LC91_DecodeWays {
         dp[0] = 1;
         dp[1] = s.charAt(0) == '0' ? 0 :1;
         for(int i = 2; i<dp.length;i++) {
-            int one = s.charAt(i-1) - '0';
-            int two = (s.charAt(i-2) - '0') * 10 + one;
-            if(one > 0){
+            int oneCharacterValue = s.charAt(i-1) - '0';
+            int twoCharacterStringValue = (s.charAt(i-2) - '0') * 10 + oneCharacterValue;
+            if(oneCharacterValue > 0){
                 dp[i] += dp[i-1];
             }
-            if(two >= 10 && two < 27) {
+            if(twoCharacterStringValue >= 10 && twoCharacterStringValue < 27) {
                 dp[i] += dp[i-2];
             }
         }
