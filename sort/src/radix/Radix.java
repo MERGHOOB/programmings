@@ -1,6 +1,5 @@
 package radix;
 
-import org.omg.CORBA.INTERNAL;
 
 public class Radix {
 
