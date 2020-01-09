@@ -5,13 +5,13 @@ package string;
  * Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
  */
 
-public class LC5_LongestPallindromicSubstring {
+public class LC5_LongestPalindromicSubstring {
 
 
     /**
      * This method provides good performance O(n2) and use less space O(1) space
      */
-    private String longestPallindromeExpandingAroundCenter(String text) {
+    private String longestPalindromeExpandingAroundCenter(String text) {
 
         if (text == null || text.isEmpty()) {
             return "";
@@ -45,7 +45,7 @@ public class LC5_LongestPallindromicSubstring {
 
     //DP O(n2) space and time
 
-    private String longestPallindromWithDP(String text) {
+    private String longestPalindromeWithDP(String text) {
 
 
         // Consider empty
@@ -81,7 +81,7 @@ public class LC5_LongestPallindromicSubstring {
     public static void main(String[] args) {
 
         String s = "ababd";
-        String palindrome = new LC5_LongestPallindromicSubstring().longestPallindromWithDP(s);
+        String palindrome = new LC5_LongestPalindromicSubstring().longestPalindromeWithDP(s);
 
         System.out.println(palindrome);
     }
@@ -105,12 +105,12 @@ public class LC5_LongestPallindromicSubstring {
 
             for (int second = first; second < text.length(); second++) {
 
-                String candidatePallindrome = getSubString(text, first, second);
+                String candidatePalindrome = getSubString(text, first, second);
 
-                if (isPallindrome(candidatePallindrome)) {
-                    if (candidatePallindrome.length() > maxLength) {
-                        pallindrome = candidatePallindrome;
-                        maxLength = candidatePallindrome.length();
+                if (isPallindrome(candidatePalindrome)) {
+                    if (candidatePalindrome.length() > maxLength) {
+                        pallindrome = candidatePalindrome;
+                        maxLength = candidatePalindrome.length();
                     }
                 }
             }
