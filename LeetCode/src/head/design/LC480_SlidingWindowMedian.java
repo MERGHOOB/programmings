@@ -2,7 +2,6 @@ package head.design;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class LC480_SlidingWindowMedian {
@@ -11,10 +10,11 @@ public class LC480_SlidingWindowMedian {
 
     private PriorityQueue<Double> minHeap, maxHeap;
 
-    public LC480_SlidingWindowMedian() {
 
-        Set<Integer> set = new TreeSet<>();
-        ((TreeSet<Integer>) set).higher(1);
+    private LC480_SlidingWindowMedian() {
+
+        TreeSet<Integer> set = new TreeSet<>();
+        set.higher(1);
         median = 0;
         maxHeap = new PriorityQueue<>(Collections.reverseOrder()); // maxHeap
         minHeap = new PriorityQueue<>(); // minHeap

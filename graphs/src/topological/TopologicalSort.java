@@ -51,10 +51,10 @@ public class TopologicalSort {
                 if (pop.isParent) {
                     postOrder.push(pop.vertex);
                     continue;
-                } // poostorder
+                } // post order
                 visited[pop.vertex] = true;
 //                sortArray[indexToFill++] = pop.vertex;
-                dfs.push(new DFSNode(true, pop.vertex)); // make it as parent. so that can be pushed postorder
+                dfs.push(new DFSNode(true, pop.vertex)); // make it as parent. so that can be pushed post order
                 for (int child : graph.get(pop.vertex)) {
                     if (!visited[child]) {
                         dfs.push(new DFSNode(false, child));
@@ -87,7 +87,7 @@ public class TopologicalSort {
             }
         }
 
-        Queue<Integer> queue = new LinkedList<>(); // For lexographically smaller sort, use PriorityQueue
+        Queue<Integer> queue = new LinkedList<>(); // For lexicographically smaller sort, use PriorityQueue
         /*
         en-Queue all independent vertex where no incoming path.
          */
