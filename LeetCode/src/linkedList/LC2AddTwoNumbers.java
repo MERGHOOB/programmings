@@ -96,21 +96,3 @@ new LC2AddTwoNumbers().print(listNode);
 
 }
 
- class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) { val = x; }
-
-
-     public void print(ListNode listNode) {
-        while(listNode != null) {
-            System.out.println(listNode.val + " -> ");
-            listNode = listNode.next;
-        }
-         System.out.println();
-      }
-
-     public void print() {
-         print(this);
-     }
- }
